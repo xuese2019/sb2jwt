@@ -82,9 +82,9 @@ public class StatelessRealm extends AuthorizingRealm {
         String account = map.get("sub").asString();
         ResponseResult<AccountModel> result = accountService.getByUuid(account);
         if (!result.isSuccess())
-            throw new UnknownAccountException("当前账户已不存在!");
+            throw new UnknownAccountException("令牌已不存在!");
         if (result.getData().getIsLogin().equals("N"))
-            throw new UnknownAccountException("当前账户已禁止登陆!");
+            throw new UnknownAccountException("令牌已禁止登陆!");
         return new SimpleAuthenticationInfo(token, token, getName());
     }
 

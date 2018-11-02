@@ -108,8 +108,8 @@ databaseSavePath: ${linuxfile}/sql/
 #mysql mysqldump地址
 blackup:
   mysqldump: ${linuxfile}
-  databaseName: hbcrm
-  databaseHost: 192.168.1.130
+  databaseName: crm
+  databaseHost: localhost
 #  databaseHost: 192.168.1.178
 
 #  filepath
