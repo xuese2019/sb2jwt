@@ -227,7 +227,7 @@ public class CustomerServiceImpl implements CustomerService {
         if (one2.getGsr().equals(sub.asString())) {
             //            历史记录
 //            mapper.addBack(model.getUuid(), model2.getUuid());
-            List<Customer3Model> list = backUpdateById(model,sub.asString());
+            List<Customer3Model> list = backUpdateById(model, sub.asString());
             list.forEach(k -> {
                 mapper.addBack3(k);
             });
@@ -411,7 +411,7 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
-    public List<Customer3Model> backUpdateById(CustomerModel model,String account) {
+    public List<Customer3Model> backUpdateById(CustomerModel model, String account) {
         List<Customer3Model> list = new ArrayList<>();
         CustomerModel one = mapper.getById(model.getUuid());
 //        反射获取所有的属性

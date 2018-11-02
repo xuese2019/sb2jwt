@@ -676,16 +676,16 @@ public class GlobalExceptionHandler {
         log.debug("ERROR::::：" + exception.getMessage() + "::::::" + new Date());
         log.debug("ERROR::::：" + Arrays.toString(exception.getStackTrace()) + "::::::" + new Date());
 //        if (isAjax(request)) {
-            response.setCharacterEncoding("UTF-8");
-            response.setContentType("application/json");
-            ResponseResult<String> result = new ResponseResult<>(false, "未知异常");
-            response.getWriter().write(Objects.requireNonNull(JackJson.beanToJson(result)));
+        response.setCharacterEncoding("UTF-8");
+        response.setContentType("application/json");
+        ResponseResult<String> result = new ResponseResult<>(false, "未知异常");
+        response.getWriter().write(Objects.requireNonNull(JackJson.beanToJson(result)));
 //            httpServletResponse.sendRedirect("/index");
 //        } else {
-            //saveRequestAndRedirectToLogin(request, response);
-            /**
-             * @Mark 非ajax请求重定向为登录页面
-             */
+        //saveRequestAndRedirectToLogin(request, response);
+        /**
+         * @Mark 非ajax请求重定向为登录页面
+         */
 //            response.sendRedirect("/views/error/500");
 //        }
     }

@@ -52,7 +52,7 @@ public class JWTUtils {
         return claimMap.get(k);
     }
 
-    public static String getAccId(HttpServletRequest request){
+    public static String getAccId(HttpServletRequest request) {
         String lTokenD = request.getHeader("LTokenD");
         Map<String, Claim> map = JWTUtils.verifToken(lTokenD);
         String sub = map.get("sub").asString();

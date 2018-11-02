@@ -9,9 +9,9 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 //@EnableCaching
 //定时器
 @EnableScheduling
-public class HbcrmApplication {
+public class Application {
 
     public static void main(String[] args) {
-        SpringApplication.run(HbcrmApplication.class, args);
+        SpringApplication.run(Application.class, args);
     }
 }

@@ -53,7 +53,7 @@ public class JurBmServiceImpl implements JurBmService {
         if (list.size() > 0)
             return new ResponseResult<>(true, "成功", list);
         else
-            return new ResponseResult<>(false, "未查询到记录",new ArrayList<>());
+            return new ResponseResult<>(false, "未查询到记录", new ArrayList<>());
     }
 
     @Override

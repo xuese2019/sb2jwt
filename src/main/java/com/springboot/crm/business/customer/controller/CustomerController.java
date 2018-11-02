@@ -67,7 +67,7 @@ public class CustomerController {
                                                 HttpServletRequest request) {
         if (result.hasErrors())
             return new ResponseResult<>(false, result.getAllErrors().get(0).getDefaultMessage());
-        return service.updateGsrById4(model,request);
+        return service.updateGsrById4(model, request);
     }
 
     //    查询自己的客户
