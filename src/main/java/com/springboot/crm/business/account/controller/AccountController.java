@@ -7,6 +7,10 @@ import com.springboot.crm.business.account.service.AccountService;
 import com.springboot.crm.sys.shiro.JWTUtils;
 import com.springboot.crm.utils.base64.Base64Util;
 import com.springboot.crm.utils.result.ResponseResult;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
+import io.swagger.annotations.ApiOperation;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,6 +33,7 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("/data/account")
+@Api(value = "用户管理控制器")
 public class AccountController {
 
     @Value("${page.pageSize}")
@@ -37,16 +42,24 @@ public class AccountController {
     @Autowired
     private AccountService service;
 
-
-    @RequestMapping(value = "/account/{pageNow}", method = RequestMethod.GET)
+    @ApiOperation(value = "根据查询条件获取用户的分页数据", notes = "路径当前页以及表单的形式接收查询条件")
+    @ApiImplicitParams({
+            @ApiImplicitParam(paramType = "path", name = "pageNow", value = "当前页数", required = true, dataType = "Integer"),
+    })
+    @RequestMapping(value = "/account/{pageNow}", method = RequestMethod.POST)
     public ResponseResult<Page<AccountModel>> findAll(@PathVariable("pageNow") int pageNow,
-                                                      @ModelAttribute("form") AccountModel model) {
-        Subject subject = SecurityUtils.getSubject();
-        AccountModel model1 = (AccountModel) subject.getPrincipal();
-        model.setParents(model1.getUuid());
+                                                      @RequestBody AccountModel model,
+                                                      HttpServletRequest request) {
+        String lTokenD = request.getHeader("LTokenD");
+        Claim sub = JWTUtils.getApp(lTokenD, "sub");
+        model.setParents(sub.asString());
         return service.findAll(pageNow, pageSize, model);
     }
 
+    @ApiOperation(value = "根据账户id获取实体", notes = "根据request的头部token信息确定当前登陆人的主键")
+    @ApiImplicitParams({
+            @ApiImplicitParam(paramType = "heard", name = "LTokenD", value = "token", required = true, dataType = "String"),
+    })
     @RequestMapping(value = "/account", method = RequestMethod.GET)
     public ResponseResult<AccountModel> getById(HttpServletRequest request) {
         String lTokenD = request.getHeader("LTokenD");

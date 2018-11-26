@@ -99,7 +99,9 @@ public class StatelessAuthcFilter extends AccessControlFilter {
 
     private static List<String> getList() {
         List<String> list = new ArrayList<>();
-        list.add("/data/login");
+        list.add("/");
+//        list.add("/data/login");
+//        list.add("/swagger-ui.html");
 //        list.add("/views/");
 //        list.add("/home/index");
 //        list.add("/favicon.ico");

@@ -2,6 +2,8 @@ package com.springboot.crm.business.account.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
@@ -15,14 +17,18 @@ import java.sql.Timestamp;
  * @remarks
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
+@ApiModel(value = "AccountModel",description = "账户对象")
 public class AccountModel implements Serializable {
 
     private String uuid;
     //    账户
     @NotBlank(message = "账户不能为空")
     @Size(max = 200, message = "账户最大长度为200位")
+//    example="001" 提示样例
+    @ApiModelProperty(value="用户名",name="account")
     private String account;
     //    密码
+    @ApiModelProperty(value="密码",name="password")
     private String password;
     //    加密盐
     private String salt;
@@ -40,8 +46,10 @@ public class AccountModel implements Serializable {
     //    账户生成人
     private String creatorAccId;
     //    姓名
+    @ApiModelProperty(value="姓名",name="name")
     private String name;
     //    手机
+    @ApiModelProperty(value="手机",name="phone")
     private String phone;
 
     public String getUuid() {

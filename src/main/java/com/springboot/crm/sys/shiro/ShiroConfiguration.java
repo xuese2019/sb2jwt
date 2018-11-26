@@ -81,6 +81,7 @@ public class ShiroConfiguration {
         Map<String, String> filterChainDefinitionMap = new LinkedHashMap<>();
 //        应为是无状态的，所以此处的白名单不起作用
 //        filterChainDefinitionMap.put("/data/login/*", "anon");
+        filterChainDefinitionMap.put("/swagger-ui.html", "anon");
         filterChainDefinitionMap.put("/**", "statelessAuthcFilter");
         shiroFilterFactoryBean.setFilterChainDefinitionMap(filterChainDefinitionMap);
         return shiroFilterFactoryBean;
